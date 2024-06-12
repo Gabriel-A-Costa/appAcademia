@@ -1,0 +1,299 @@
+{% extends "academia/base.html" %}
+{% load static %}
+
+{% block body %}
+
+{% if profile.user.id == request.user.id or is_admin %}
+    {% csrf_token %}
+    <div class='container_user_profile'>
+        <img src="{{ profile.profile_img.url }}" alt="" class='user_profile'>
+        <h1 class='h1_profile'>{{profile.user.username|capfirst}}</h1>
+    </div>
+    <br>
+    {% if request.user.id == profile.user.id %}
+    <div class="btn_perfil">
+        <a style='--bg:#2196f3;' class='btn__register' href="{% url "edit_profile" %}">Editar Perfil</a> 
+        <a style='--bg:#2196f3;' class="btn__register" href="{% url "logout" %}"><ion-icon name="log-out-outline"></ion-icon></a> 
+    </div> 
+    <div class="register__btnContainer">
+    </div> 
+    {% endif %}
+
+    {% if is_admin %}
+    <div class="adminButtons">
+        <div class="add_treino">
+            <a style='--bg:#2196f3;' class='btn__register' href="{% url 'academia:training_planning' profile.user_id %}">Novo Treino</a> 
+        </div>  
+        <div class="add_treino">
+            <a style='--bg:#2196f3;' class='btn__register' href="{% url 'new-anamnese' profile.user_id %}">Nova Anamnese</a> 
+        </div> 
+        <div class="add_treino">
+            <a style='--bg:#2196f3;' class='btn__register' href="{% url 'new-antropometria' profile.user_id %}">Nova Antropometria</a> 
+        </div> 
+    </div> 
+    {% endif %}
+    
+    <div class='trainig__h2'>
+        <h2 style='--bg:#2196f3;' >Treinos</h2>
+    </div>
+
+    
+    <div class="training__container">
+        <div class="slide__wrapper">
+            <button id='prev-slide' class='slide-button material-symbols-rounded'><ion-icon name="chevron-back-outline"></ion-icon></button>
+            <div class="image__list">
+                {% for training_type in training_types  %}
+                    <div class="image__box">
+                        <a href="{% url 'academia:training' profile.user.id training_type.type_id %}"><img src="{{ training_type.type.exercicio_image.url }}" alt=""></a>
+                        <h3>{{ training_type.type.exercicio_type|capfirst }}</h3>
+                    </div>
+                {% endfor %}
+            </div>
+            <button id='next-slide' class='slide-button material-symbols-rounded'><ion-icon name="chevron-forward-outline"></ion-icon></button>
+            {% comment %} <div class="slider__scrollbar">
+                <div class="scrollbar__track">
+                    <div class="scrollbar__thumb"></div>
+                </div>
+            </div> {% endcomment %}
+        </div>
+    </div>
+
+
+
+
+<div class="texteFlex">    
+    <div class="listaAvaliacao">
+        {% for anamnese in anamneses %}
+        <div class="anamneseContainer">
+            <div class="anamneses">
+                <div class='Anamnese__h2'>
+                    <h2 style='--bg:#2196f3;' >Anamnese</h2>
+                </div>
+                {% if is_admin %}
+                    <div class="adminButtons2">
+                        <div class="add_treino2">
+                            <a style='--bg:#2196f3;' class='btn__register' href="{% url 'edit_anamnese' profile.user_id anamnese.id %}">Editar</a> 
+                        </div>  
+                        <div class="add_treino2">
+                            <a style='--bg:#2196f3;' class='btn__register' href="{% url 'delete_anamnese' anamnese.id %}">Deletar</a> 
+                        </div>  
+                    </div> 
+                {% endif %}
+
+                <div class="anamnese-data">
+                    <h1>{{ anamnese.data_anamnese.date }}</h1>
+                </div>
+                <br>
+                <div class="anamnese-item">
+                    <h3>Minha Meta: <span>{{ anamnese.meta }}</span></h3>
+                </div>
+
+                <div class="anamnese-item">
+                    <h3>Pratica tividades: <span>{{ anamnese.pratica_atividades }}</span></h3>
+                    {% if anamnese.pratica_atividades == 'Sim' %}
+                        <p>Atividades Físicas: {{ anamnese.atividades_fisicas }}</p>
+                        <p>Frequência: {{ anamnese.frequencia_atividades }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="anamnese-item">
+                    <h3>Hábito de fumar: <span>{{ anamnese.fuma }}</span></h3>
+                    {% if anamnese.fuma == 'Sim' %}
+                        <p>Fumante há: {{ anamnese.tempo_fumante }}</p>
+                        <p>Cigarros por dia: {{ anamnese.qnt_cigarro }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="anamnese-item">
+                    <h3>Restrições à atividade física: <span>{{ anamnese.restricao }}</span></h3>
+                    {% if anamnese.restricao == 'Sim' %}
+                        <p>Restrições: {{ anamnese.tipos_restricao }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="anamnese-item">
+                    <h3>Utiliza medicamento: <span>{{ anamnese.medicamento }}</span></h3>
+                    {% if anamnese.medicamento == 'Sim' %}
+                        <p>Medicamentos: {{ anamnese.tipos_medicamento }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="anamnese-item">
+                    <h3>Sente dores no corpo: <span>{{ anamnese.dores }}</span></h3>
+                    {% if anamnese.dores == 'Sim' %}
+                        <p>Tipos de dores: {{ anamnese.tipos_dores }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="anamnese-item">
+                    <h3>Acidente osteo-muscular: <span>{{ anamnese.acidente }}</span></h3>
+                    {% if anamnese.acidente == 'Sim' %}
+                        <p>Acidente: {{ anamnese.tipos_acidentes }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="anamnese-item">
+                    <h3>Está de dieta: <span>{{ anamnese.dieta }}</span></h3>
+                </div>
+            
+                <div class="anamnese-item">
+                    <h3>Possui alguma alergia: <span>{{ anamnese.alergia }}</span></h3>
+                    {% if anamnese.alergia == 'Sim' %}
+                        <p>Alergia: {{ anamnese.tipos_alergia }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="anamnese-item">
+                    <h3>Pressão arterial: <span>{{ anamnese.controle_pressao }}</span></h3>
+                    {% if anamnese.controle_pressao == 'Alta' %}
+                        <p>Pressão: {{ anamnese.pressao }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="anamnese-item">
+                    <h3>Histórico cardíaco na familia: <span>{{ anamnese.cardiaco }}</span></h3>
+                    {% if anamnese.cardiaco == 'Sim' %}
+                        <p>Quantas pessoas: {{ anamnese.historico_cardiaco }}</p>
+                    {% endif %}
+                </div>
+                
+                <div class="anamnese-item">
+                    <h3>Idade: <span>{{ anamnese.idade }}</span></h3>
+                </div>
+                
+                <div class="anamnese-item">
+                    <h3>Coluna vertebral: <span>{{ anamnese.coluna }}</span></h3>
+                </div>
+            </div>
+        {% endfor %}
+    </div>   
+
+    <div class="listaAvaliacao">       
+        {% for antropometria in antropometrias %}
+        <div class="antropometriaContainer">
+            <div class="antropometria">
+                <div class='antropometria__h2'>
+                    <h2 style='--bg:#2196f3;' >Antropometria</h2>
+                </div>
+                {% if is_admin %}
+                    <div class="adminButtons2">
+                        <div class="add_treino2">
+                            <a style='--bg:#2196f3;' class='btn__register' href="{% url 'edit_antropometria' profile.user_id antropometria.id %}">Editar</a> 
+                        </div>  
+                        <div class="add_treino2">
+                            <a style='--bg:#2196f3;' class='btn__register' href="{% url 'delete_antropometria' antropometria.id %}">Deletar</a> 
+                        </div>  
+                    </div> 
+                {% endif %}
+
+
+                    <div class="antropometria-data">
+                        <h1>{{ antropometria.data_antropometria.date }}</h1>
+                    </div>
+                    <div class="perimetria">
+                        <div class="antropometria-item-top">
+                            <h3>Perimetria e Biometria</h3>
+                        </div>
+                        <div class="antropometria-item">
+                            <h3>Avaliado: <span>{{ antropometria.avaliado }}</span></h3>
+                        </div>
+                        <div class="antropometria-item">
+                            <h3>Massa Corporal: <span>{{ antropometria.massa_corporal }} Kg</span></h3>
+                        </div>
+                        <div class="antropometria-item">
+                            <h3>Estatura: <span>{{ antropometria.estatura }} cm</span></h3>
+                        </div>
+                        <div class="antropometria-item">
+                            <h3>Pescoço: <span>{{ antropometria.pescoco }} cm</span></h3>
+                        </div>
+                        <div class="antropometria-item">
+                            <h3>Ombro: <span>{{ antropometria.ombro }} cm</span></h3>
+                        </div>
+                        <div class="antropometria-item">
+                            <h3>Tórax: <span>{{ antropometria.torax }} cm</span></h3>
+                        </div>
+                        <div class="antropometria-item">
+                            <h3>Cintura: <span>{{ antropometria.cintura }} cm</span></h3>
+                        </div>
+                        <div class="antropometria-item">
+                            <h3>Abdômen: <span>{{ antropometria.abdome }} cm</span></h3>
+                        </div>
+                        <div class="antropometria-item">
+                            <h3>Quadril: <span>{{ antropometria.quadril }} cm</span></h3>
+                        </div>
+                    </div>
+
+                    <div class="perimetria">
+                        <div class="antropometria-item-top">
+                            <h3>Perimetria Direita </h3>
+                        </div>
+                        <div class="antropometria-item">
+                            <h3>Braço: <span>{{ antropometria.braco_direito }} cm</span></h3>
+                        </div>
+                        <div class="antropometria-item">
+                            <h3>Ante Braço: <span>{{ antropometria.ante_braco_direito }} cm</span></h3>
+                        </div>
+                        <div class="antropometria-item">
+                            <h3>Coxa: <span>{{ antropometria.coxa_direito }} cm</span></h3>
+                        </div>
+                        <div class="antropometria-item">
+                            <h3>Panturrilha: <span>{{ antropometria.panturrilha_direito }} cm</span></h3>
+                        </div>  
+                    </div>
+
+                    <div class="perimetria">
+                        <div class="antropometria-item-top">
+                            <h3>Perimetria Esquerda </h3>
+                        </div>
+                        <div class="antropometria-item">
+                            <h3>Braço: <span>{{ antropometria.braco_esquerda }} cm</span></h3>
+                        </div>
+                        <div class="antropometria-item">
+                            <h3>Ante Braço: <span>{{ antropometria.ante_braco_esquerda }} cm</span></h3>
+                        </div>
+                        <div class="antropometria-item">
+                            <h3>Coxa: <span>{{ antropometria.coxa_esquerda }} cm</span></h3>
+                        </div>
+                        <div class="antropometria-item">
+                            <h3>Panturrilha: <span>{{ antropometria.panturrilha_esquerda }} cm</span></h3>
+                        </div>
+                    </div>
+
+                    <div class="perimetria">
+                        <div class="antropometria-item-top">
+                            <h3>Massa e Gordura</h3>
+                        </div>
+                        <div class="antropometria-item">
+                            <h3>IMC: {% if antropometria.imc < 18.5  %}<span id="abaixo">{{ antropometria.imc }}Kg <ion-icon name="arrow-down-circle-outline"></ion-icon></span>{% elif antropometria.imc > 24.9 %}<span id="acima">{{ antropometria.imc }} kg <ion-icon name="arrow-up-circle-outline"></ion-icon>{% else %}<span>{{ antropometria.imc }} Kg</span></h3>{% endif %}
+                        </div>
+                        <div class="antropometria-item">
+                            <h3>Índice de Gordura: <span>{{ antropometria.gordura }} Kg</span></h3>
+                        </div>
+                        <div class="antropometria-item">
+                            <h3>Índice de Massa Corporal: <span>{{ antropometria.massa_corporal_2 }} Kg</span></h3>
+                        </div>
+                        <div class="antropometria-item">
+                            <h3>Taxa de Metabolismo em repouso: <span>{{ antropometria.metabolismo }} Kg</span></h3>
+                        </div>
+                        <div class="antropometria-item">
+                            <h3>Idade Corporal: <span>{{ antropometria.idade_corporal }} anos</span></h3>
+                        </div>
+                        <div class="antropometria-item">
+                            <h3>Gordura Viceral: <span>{{ antropometria.gordura_viceral }} kg</span></h3>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+    {% endif %}
+
+
+{% endblock %}
+
+
+{% block scripts %}
+<script src="{% static "academia/app.js" %}"></script>
+{% endblock %}

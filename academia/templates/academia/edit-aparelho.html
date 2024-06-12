@@ -1,0 +1,34 @@
+{% extends "academia/base.html" %}
+{% load static %}
+
+{% block body %}
+
+<h1 class='register__h1'>Editar Aparelho</h1>
+
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class='inputContainer'>
+        <div class="inputContainer">
+            <input required="required" class="inputField" type="text" name='aparelho_name' value="{{ form.instance.aparelho_name }}">
+            <label class="usernameLabel" for="inputField">Exercicio</label>
+            <div style='--bg:#ffa117;' class="userIcon"><ion-icon name="accessibility-outline"></ion-icon></div>
+        </div>
+        <div class="containerUp">
+            <input type="file" name="aparelho_image" id="file" accept="image/*" hidden>
+            <div class="img-area" data-img="">
+                <ion-icon name="cloud-upload-outline" class="iconUp"></ion-icon>
+                <h3>Upload Image</h3>
+            </div>
+            <label style='--bg:#ffa117;' class="select-image" for='file'>Selecionar Imagem</label>
+        </div>
+    </div>  
+    <div class="register__btnContainer">
+        <button style='--bg:#ffa117;' type="submit" class='btn__register'>Salvar</button>
+    </div>
+</form>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static "academia/image.js" %}"></script>
+{% endblock %}

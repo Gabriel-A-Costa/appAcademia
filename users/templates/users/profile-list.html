@@ -1,0 +1,42 @@
+{% extends "academia/base.html" %}
+
+{% block body %}
+<div style='--bg:#00ddcb;' class='register__h1'><h1>Lista de Perfis</h1> </div>
+<br>
+<div class="register__btnProfile">
+    <a href="{% url "register" %}" style='--bg:#00ddcb;' class='btn__profile'>Registrar Aluno</a>
+</div>
+<form class="searchUser">
+    <input required="required" class="inputField" placeholder="Nome" type="text" name='user_name'>
+    <button style='--bg:#00ddcb;' class='btn__profile' type='submit'><ion-icon name="search-outline"></ion-icon></button>
+</form>
+<br><br><br><br>
+{% if profiles %}
+<div class='card-container'>
+
+{% for profile in profiles %}
+    <div class='card'>
+        <div class='cardImgBx'>
+            <img src="{{ profile.profile_img.url }}" alt="">
+        </div>
+        <div class='cardContent'>
+            <div class='cardDetails'>
+                <h2>{{ profile.user.username|capfirst }}<br><span>{{ profile.user.first_name }} {{ profile.user.last_name }}</span></h2>
+                <div class="cardData">
+                    <h3>Email<br><span>{{ profile.user.email }}</span></h3>
+                    <br>
+                    <h3>Phone<br><span>{{ profile.phone_number }}</span></h3>
+                </div>
+                <div class='cardActionBtn'>
+                    <a href="{% url 'profile' profile.user.id %}">Profile</a>
+                    <a href="{% url 'academia:training_planning' profile.user_id %}">+ Treino</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+    
+</div>
+
+    {% endif %}
+{% endblock %}

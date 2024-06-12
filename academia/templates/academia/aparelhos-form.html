@@ -1,0 +1,52 @@
+{% extends "academia/base.html" %}
+{% load static %}
+
+
+{% block body %}
+<div style='--bg:#ffa117;' class='register__h1'><h1>Lista de Aparelhos</h1> </div>
+
+<form action="" method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+    <div class='inputContainer'>
+        <div class="inputContainer">
+            <input required="required" class="inputField" placeholder="Aparelho" type="text" name='aparelho_name'>
+            <label class="usernameLabel">Aparelho</label>
+            <div style='--bg:#ffa117;' class="userIcon"><ion-icon name="barbell-outline"></ion-icon></div>
+        </div>
+        <div class="containerUp">
+            <input type="file" name="aparelho_image" id="file" accept="image/*" hidden>
+            <input type="hidden" id="selected-image" name="selected-image">
+            <div class="img-area" data-img="">
+                <ion-icon name="cloud-upload-outline" class="iconUp"></ion-icon>
+                <h3>Upload Image</h3>
+            </div>
+            <label style='--bg:#ffa117;' class="select-image" for='file'>Selecionar Imagem</label>
+        </div>
+    </div>  
+    
+    <div class="register__btnContainer">
+        <button style='--bg:#ffa117;' type="submit" class='btn__register'>Add</button>
+    </div>
+</form>    
+
+<div class="cadContainer">
+    <div class="card__container">
+        {% for aparelho in aparelhos %}
+            <article class="card__article">
+                <img src="{{ aparelho.aparelho_image.url }}" alt="image" class="card__img">
+
+                <div class="card__data">
+                    <span class="card__description"></span>
+                    <h2 class="card__title">{{ aparelho.aparelho_name|capfirst }}</h2>
+                    <a href="{% url "academia:delete_aparelho" aparelho.id %}" class="card__button__ap">Deletar</a>
+                </div>
+            </article>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static "academia/image.js" %}"></script>
+{% endblock %}

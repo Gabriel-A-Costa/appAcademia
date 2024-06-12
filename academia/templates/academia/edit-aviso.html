@@ -1,0 +1,34 @@
+{% extends "academia/base.html" %}]
+{% load static %}
+
+{% block body %}
+
+<div style='--bg:#0fc70f;' class='register__h1'><h1>Editar Aviso</h1> </div>
+
+
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="newAvisoContainer">
+        <div class="inputContainer">
+            <input required="required" class="inputField" type="text" name='title' value="{{ form.instance.title }}" >
+            <label class="usernameLabel" for="inputField">Title</label>
+            <div style='--bg:#0fc70f;' class="userIcon"><ion-icon name="accessibility-outline"></ion-icon></div>
+        </div>
+        <div class="inputContainer">
+            <textarea required="required" class="textAviso" placeholder="Descriçao" type="text" name='message' maxlength="750">{{ form.instance.message }}</textarea>
+            <label class="usernameLabel">Descrição</label>
+            <div style='--bg:#0fc70f;' class="userIcon"><ion-icon name="document-text-outline"></ion-icon></div>
+            <div id="charCount">750 caracteres restantes</div>
+        </div>  
+        {% comment %} <input type="text" name='exercicio_image'> {% endcomment %}
+    </div>
+        <div class="register__btnContainer">
+            <button style='--bg:#0fc70f;' type="submit" class='btn__register'>Salvar</button>
+        </div>
+</form>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static "academia/textarea.js" %}"></script>
+{% endblock %}

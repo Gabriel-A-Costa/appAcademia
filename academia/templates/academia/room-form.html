@@ -1,0 +1,29 @@
+{% extends "academia/base.html" %}
+{% load static %}
+
+{% block body %}
+<div style='--bg:#0fc70f;' class='register__h1'><h1>Novo Aviso</h1> </div>
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="newAvisoContainer">
+        <div class="inputContainer">
+            <input required="required" class="inputField" placeholder="Titulo" type="text" name='title'>
+            <label class="usernameLabel">Titulo</label>
+            <div style='--bg:#0fc70f;' class="userIcon"><ion-icon name="barbell-outline"></ion-icon></div>
+        </div>
+        <div class="inputContainer">
+            <textarea required="required" class="textAviso" placeholder="Descriçao" type="text" name='message' maxlength="750"></textarea>
+            <label class="usernameLabel">Descrição</label>
+            <div style='--bg:#0fc70f;' class="userIcon"><ion-icon name="document-text-outline"></ion-icon></div>
+            <div id="charCount">750 caracteres restantes</div>
+        </div>
+    </div>
+    <div class="register__btnContainer">
+        <button style='--bg:#0fc70f;' type="submit" class='btn__register'>Salvar</button>
+    </div>
+</form>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static "academia/textarea.js" %}"></script>
+{% endblock %}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% comment %} <link rel="stylesheet" href="{% static 'academia/style.css' %}" /> {% endcomment %}
+
+    <title>500 Erro Page</title>
+    
+    <style>
+        ::-webkit-scrollbar {
+            background: transparent;
+            width: 0;
+        }
+
+        html,
+        body {
+        height: 100%;
+        width: 100%;
+        margin: 0px;
+        background: rgb(20, 22, 31);
+        }
+
+        .error {
+        position: absolute;
+        left: 100px;
+        top: 400px;
+        transform: translateY(-60%);
+        font-family: 'Righteous', cursive;
+        color: #fff;
+        }
+
+        .error__title {
+        font-size: 10em;
+        }
+
+        .error__subtitle {
+        font-size: 2em;
+        }
+
+        .error__description {
+        opacity: 0.5;
+        }
+
+        .error__button {
+        min-width: 7em;
+        margin-top: 3em;
+        margin-right: 0.5em;
+        padding: 0.5em 2em;
+        outline: none;
+        border: 2px solid hsl(0, 0%, 35%);
+        background-color: transparent;
+        border-radius: 8em;
+        color: #fff;
+        cursor: pointer;
+        transition-duration: 0.2s;
+        font-size: 0.75em;
+        font-family: 'Righteous', cursive;
+        }
+
+        .error__button:hover {
+        color: #fff;
+        }
+
+        .error__button--active {
+        background-color: #f44336;
+        border: 2px solid #f44336;
+        color: white;
+        }
+
+        .error__button--active:hover {
+        box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.5);
+        color: white;
+        }  
+    </style>
+
+</head>
+
+<body>
+
+    <div class="moon"></div>
+    <div class="moon__crater moon__crater1"></div>
+    <div class="moon__crater moon__crater2"></div>
+    <div class="moon__crater moon__crater3"></div>
+
+    <div class="star star1"></div>
+    <div class="star star2"></div>
+    <div class="star star3"></div>
+    <div class="star star4"></div>
+    <div class="star star5"></div>
+
+    <div class="error">
+    <div class="error__title">500</div>
+    <div class="error__subtitle">Hmmm...</div>
+    <div class="error__description">It looks like one of the  developers fell asleep</div>
+    <a href="{% url "academia:index" %}"><button class="error__button error__button--active">HOME PAGE</button></a>
+    <a href="{% url "login" %}"><button class="error__button">LOGIN</button></a>
+</body>
+</html>

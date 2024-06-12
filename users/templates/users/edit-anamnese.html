@@ -1,0 +1,200 @@
+{% extends "academia/base.html" %}
+
+{% block body %}
+
+<div style='--bg:#2196f3;' class='register__h1'><h1>Editar Anamnese de {{form.instance.user.first_name}} {{form.instance.user.last_name}}</h1> </div>
+
+    <br>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class='inputContainer'>
+
+            <div class="inputContainer">
+                <select class="inputField" name="meta">
+                    {% for id, meta in meta_choices %}
+                        <option value="{{ id }}" {% if id == form.instance.meta %}selected{% endif %}>{{ meta }}</option>
+                    {% endfor %}
+                </select>
+                <label class="usernameLabel">Meta</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="chevron-forward-outline"></ion-icon></div>
+            </div>
+
+            <div class="inputContainer">
+                <select class="inputField" name='pratica_atividades' >
+                    {% for id, opcoes in opcoes_choices %}
+                        <option value="{{ id }}" {% if id == form.instance.pratica_atividades %}selected{% endif %}>{{ opcoes }}</option>
+                    {% endfor %}    
+                </select>
+                <label class="usernameLabel">Pratica Atividades</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="chevron-forward-outline"></ion-icon></div>
+            </div>
+            <div class="inputContainer">
+                <input class="inputField" placeholder="" type="text" name='atividades_fisicas' value="{{ form.atividades_fisicas.value }}">
+                <label class="usernameLabel">Atividades</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+            <div class="inputContainer">
+                <input class="inputField" placeholder="" type="text" name='frequencia_atividades' value="{{ form.frequencia_atividades.value }}">
+                <label class="usernameLabel">Frequencia</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+            
+            <div class="inputContainer">
+                <select class="inputField" name='fuma' >
+                    {% for id, opcoes in opcoes_choices %}
+                    <option value="{{ id }}" {% if id == form.instance.fuma %}selected{% endif %}>{{ opcoes }}</option>
+                    {% endfor %}    
+                </select>
+                <label class="usernameLabel">Fuma</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="chevron-forward-outline"></ion-icon></div>
+            </div>
+            <div class="inputContainer">
+                <input class="inputField" placeholder="" type="text" name='tempo_fumante' value="{{ form.instance.tempo_fumante }}">
+                <label class="usernameLabel">Quanto Tempo</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+            <div class="inputContainer">
+                <input class="inputField" placeholder="" type="text" name='qnt_cigarro' value="{{ form.instance.qnt_cigarro }}">
+                <label class="usernameLabel">Quantidade</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+            
+            <div class="inputContainer">
+                <select class="inputField" name='restricao' >
+                    {% for id, opcoes in opcoes_choices %}
+                    <option value="{{ id }}" {% if id == form.instance.restricao %}selected{% endif %}>{{ opcoes }}</option>
+                    {% endfor %}    
+                </select>
+                <label class="usernameLabel">Restrição à atividade fisica</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="chevron-forward-outline"></ion-icon></div>
+            </div>
+            <div class="inputContainer">
+                <input class="inputField" placeholder="" type="text" name='tipos_restricao' value="{{ form.instance.tipos_restricao }}">
+                <label class="usernameLabel">Tipos de Restrição</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+            
+            <div class="inputContainer">
+                <select class="inputField" name='medicamento' >
+                    {% for id, opcoes in opcoes_choices %}
+                    <option value="{{ id }}" {% if id == form.instance.medicamento %}selected{% endif %}>{{ opcoes }}</option>
+                    {% endfor %}    
+                </select>
+                <label class="usernameLabel">Usa Medicamento</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="chevron-forward-outline"></ion-icon></div>
+            </div>
+            <div class="inputContainer">
+                <input class="inputField" placeholder="" type="text" name='tipos_medicamento' value="{{ form.instance.tipos_medicamento }}">
+                <label class="usernameLabel">Medicamentos</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+            
+            <div class="inputContainer">
+                <select class="inputField" name='dores' >
+                    {% for id, opcoes in opcoes_choices %}
+                    <option value="{{ id }}" {% if id == form.instance.dores %}selected{% endif %}>{{ opcoes }}</option>
+                    {% endfor %}    
+                </select>
+                <label class="usernameLabel">Dores no Corpo</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="chevron-forward-outline"></ion-icon></div>
+            </div>
+            <div class="inputContainer">
+                <input class="inputField" placeholder="" type="text" name='tipos_dores' value="{{ form.instance.tipos_dores }}">
+                <label class="usernameLabel">Tipos de Dores</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+            
+            <div class="inputContainer">
+                <select class="inputField" name='acidente' >
+                    {% for id, opcoes in opcoes_choices %}
+                    <option value="{{ id }}" {% if id == form.instance.acidente %}selected{% endif %}>{{ opcoes }}</option>
+                    {% endfor %}    
+                </select>
+                <label class="usernameLabel">Acidende Osteo-muscalar</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="chevron-forward-outline"></ion-icon></div>
+            </div>
+            <div class="inputContainer">
+                <input class="inputField" placeholder="" type="text" name='tipos_acidentes' value="{{ form.instance.tipos_acidentes }}">
+                <label class="usernameLabel">Tipo do Acidente</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+
+            <div class="inputContainer">
+                <select class="inputField" name='dieta' >
+                    {% for id, opcoes in opcoes_choices %}
+                    <option value="{{ id }}" {% if id == form.instance.dieta %}selected{% endif %}>{{ opcoes }}</option>
+                    {% endfor %}    
+                </select>
+                <label class="usernameLabel">Está de Dieta</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="chevron-forward-outline"></ion-icon></div>
+            </div>
+
+            <div class="inputContainer">
+                <select class="inputField" name='alergia' >
+                    {% for id, opcoes in opcoes_choices %}
+                    <option value="{{ id }}" {% if id == form.instance.alergia %}selected{% endif %}>{{ opcoes }}</option>
+                    {% endfor %}    
+                </select>
+                <label class="usernameLabel">Possui Alergia</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="chevron-forward-outline"></ion-icon></div>
+            </div>
+            <div class="inputContainer">
+                <input class="inputField" placeholder="" type="text" name='tipos_alergia' value="{{ form.instance.tipos_alergia }}">
+                <label class="usernameLabel">Tipos de Alergia</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+            
+            <div class="inputContainer">
+                <select class="inputField" name='controle_pressao' >
+                    {% for id, pressao in pressao_choices %}
+                    <option value="{{ id }}" {% if id == form.instance.controle_pressao %}selected{% endif %}>{{ pressao }}</option>
+                    {% endfor %}    
+                </select>
+                <label class="usernameLabel">Controle de Pressão Arterial</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="chevron-forward-outline"></ion-icon></div>
+            </div>
+            <div class="inputContainer">
+                <input class="inputField" placeholder="Pressão" type="text" name='pressao' value="{{ form.instance.pressao }}">
+                <label class="usernameLabel">Pressão</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+
+            <div class="inputContainer">
+                <select class="inputField" name='cardiaco' >
+                    {% for id, opcoes in opcoes_choices %}
+                    <option value="{{ id }}" {% if id == form.instance.cardiaco %}selected{% endif %}>{{ opcoes }}</option>
+                    {% endfor %}    
+                </select>
+                <label class="usernameLabel">Histórico cardíaco na familia</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="chevron-forward-outline"></ion-icon></div>
+            </div>
+            <div class="inputContainer">
+                <input class="inputField" placeholder="" type="text" name='historico_cardiaco' value="{{ form.instance.historico_cardiaco }}">
+                <label class="usernameLabel">Quantas pessoas</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+            
+            <div class="inputContainer">
+                <input class="inputField" placeholder="" type="text" name='idade' value="{{ form.instance.idade }}">
+                <label class="usernameLabel">Idade</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+            
+            <div class="inputContainer">
+                <select class="inputField" name='coluna' >
+                    {% for id, coluna in coluna_choices %}
+                    <option value="{{ id }}" {% if id == form.instance.coluna %}selected{% endif %}>{{ coluna }}</option>
+                    {% endfor %}    
+                </select>
+                <label class="usernameLabel">Coluna Vertebral</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="chevron-forward-outline"></ion-icon></div>
+            </div>
+
+        </div>
+
+        <div class="register__btnContainer">
+            <button style='--bg:#2196f3;' type="submit" class='btn__register'>Salvar</button>
+        </div>
+    </form>
+{% endblock %}

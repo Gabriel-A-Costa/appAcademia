@@ -1,0 +1,68 @@
+{% extends "academia/base.html" %}
+{% load static %}
+
+{% block body %}
+
+{% comment %} <div class='col-md-6 offset-md-3'>
+    <h1>Register</h1>
+    <br>
+    <div class="form-group">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class='btn btn-secondary'>Signup</button>
+        </form>
+    </div>
+</div> {% endcomment %}
+
+    <h1 class='register__h1'>Lista De Exercícios</h1>
+    <form action="" method="POST">
+    {% csrf_token %}
+        <div class='inputContainer'>
+            <div class="inputContainer">
+                <input required="required" class="inputField" placeholder="Username" type="text" name='username'>
+                <label class="usernameLabel">Username</label>
+                <div style='--bg:#00ddcb;' class="userIcon"><ion-icon name="person-add-outline"></ion-icon></div>
+            </div>
+            <div class="inputContainer">
+                <input required="required" class="inputField" type="text" placeholder="First Name" name='first_name'>
+                <label class="usernameLabel">First Name</label>
+                <div style='--bg:#00ddcb;' class="userIcon"><ion-icon name="chevron-forward-outline"></ion-icon></div>
+            </div>
+            <div class="inputContainer">
+                <input required="required" class="inputField" type="text" placeholder="Last Name" name='last_name'>
+                <label class="usernameLabel">Last Name</label>
+                <div style='--bg:#00ddcb;' class="userIcon"><ion-icon name="chevron-forward-outline"></ion-icon></div>
+            </div>
+            <div class="inputContainer">
+                <input required="required" class="inputField" type="text" placeholder="Email" name='email' value='default@email.com'>
+                <label class="usernameLabel">Email</label>
+                <div style='--bg:#00ddcb;' class="userIcon"><ion-icon name="mail-outline"></ion-icon></div>
+            </div>
+            <div class="inputContainer">
+                <input required="required" id="phone_number" class="inputField" type="text" placeholder="Phone Number" name='phone_number'>
+                <label class="usernameLabel">Phone Number</label>
+                <div style='--bg:#00ddcb;' class="userIcon"><ion-icon name="call-outline"></ion-icon></div>
+            </div>
+            <div class="inputContainer">
+                <input required="required" class="inputField" type="password" placeholder="Password" name='password1' value='@1234567'>
+                <label class="usernameLabel">Password</label>
+                <div style='--bg:#00ddcb;' class="userIcon"><ion-icon name="key-outline"></ion-icon></div>
+            </div>
+            <div class="inputContainer">
+                <input required="required" class="inputField" type="password" placeholder="Confirm Passwor" name='password2' value='@1234567'>
+                <label class="usernameLabel">Confirm Password</label>
+                <div style='--bg:#00ddcb;' class="userIcon"><ion-icon name="key-outline"></ion-icon></div>
+            </div>
+        </div>  
+        <div class="register__btnContainer">
+            <button style='--bg:#00ddcb;' type="submit" class='btn__register'>Add</button>
+        </div>
+    </form>
+    
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static "academia/jquery.mask.min.js" %}"></script>
+<script src="{% static "academia/mask.js" %}"></script>
+{% endblock %}

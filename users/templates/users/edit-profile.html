@@ -1,0 +1,54 @@
+{% extends "academia/base.html" %}
+{% load static %}
+
+{% block body %}
+
+<div style='--bg:#2196f3;' class='register__h1'><h1>Editar Perfil</h1> </div>
+    <br>
+    <form action="" method="POST">
+    {% csrf_token %}
+        <div class='inputContainer'>
+            <div class="inputContainer">
+                <input required="required" class="inputField" placeholder="Username" type="text" name='username' value="{{ form.username.value }}">
+                <label class="usernameLabel">Username</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="person-add-outline"></ion-icon></div>
+            </div>
+            <div class="inputContainer">
+                <input required="required" class="inputField" type="text" placeholder="Nome" name='first_name' value="{{ form.first_name.value }}">
+                <label class="usernameLabel">Nome</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="chevron-forward-outline"></ion-icon></div>
+            </div>
+            <div class="inputContainer">
+                <input required="required" class="inputField" type="text" placeholder="Sobrenome" name='last_name' value="{{ form.last_name.value  }}">
+                <label class="usernameLabel">Sobrenome</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="chevron-forward-outline"></ion-icon></div>
+            </div>
+            <div class="inputContainer">
+                <input required="required" class="inputField" type="text" placeholder="Email" name='email' value="{{ form.email.value  }}">
+                <label class="usernameLabel">Email</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="mail-outline"></ion-icon></div>
+            </div>
+            <div class="inputContainer">
+                <input required="required" id="phone_number" class="inputField" type="text" placeholder="Telefone" name='phone_number' value="{{ form.instance.profile.phone_number }}">
+                <label class="usernameLabel">Telefone</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="call-outline"></ion-icon></div>
+            </div>
+        </div>  
+        <div class="register__btnContainer">
+            <button style='--bg:#2196f3;' type="submit" class='btn__register'>Salvar</button>
+        </div>
+    </form>
+
+    <div class="register__btnContainer">
+        <a href="{% url "edit_user_image" request.user.id %}" type="submit" class='btn__password' style='--bg:#2196f3;'>Editar Imagem</a>
+    </div>
+    <div class="register__btnContainer">
+        <a href="{% url "edit_password" %}" type="submit" class='btn__password' style='--bg:#2196f3;'>Editar Senha</a>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static "academia/mask.js" %}"></script>
+    <script src="{% static "academia/jquery.mask.min.js" %}"></script>
+{% endblock %}

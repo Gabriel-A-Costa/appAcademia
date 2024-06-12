@@ -1,0 +1,150 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'academia/style.css' %}" />
+    {% comment %} <link rel="icon" href="{% static 'images/logo-arena.png' %}"> {% endcomment %}
+    <title>Academia</title>
+</head>
+
+<body>
+{% block navbar %}
+    
+    <div class="menuToggle"></div>
+    <div class="sidebar">
+        <div class="sidebarContent">
+            <ul>
+                <li class="logo" style='--bg:#333;'>
+                    <a href="{% url "academia:index" %}">
+                        {% comment %} <div class="icon"><img src="{% static 'images/logo-arena.png' %}" alt="" class='logo__img'></div> {% endcomment %}
+                        <div class="icon"><ion-icon name="logo-capacitor"></ion-icon></div>
+                        <div class="text">Academia</div>
+                    </a>
+                </li>
+                <div class="Menulist">
+                    <li style='--bg:#f44336;' {% if page == 'index' %}class='active'{% endif %}>
+                        <a href="{% url "academia:index" %}">
+                            <div class="icon"><ion-icon name="home-outline"></ion-icon></div>
+                            <div class="text">Home</div>
+                        </a>
+                    </li>
+                    {% if user.is_authenticated %}
+                        <li style='--bg:#2196f3;' {% if page == 'profile' %}class='active'{% endif %}>
+                            <a href="{% url "profile" request.user.id %}">
+                                <div class="icon"><ion-icon name="person-outline"></ion-icon></div>
+                                <div class="text">Perfil</div>
+                            </a>
+                        </li>
+                    {% for group in user.groups.all %}
+                        {% if group.name == 'admin' %}
+                        <li style='--bg:#00ddcb;' {% if page == 'profile_list' %}class='active'{% endif %}>
+                            <a href="{% url "profile_list" %}">
+                                <div class="icon"><ion-icon name="people-outline"></ion-icon></div>
+                                <div class="text">Lista de Perfis</div>
+                            </a>
+                        </li>                   
+                        <li style='--bg:#b145e9;' {% if page == 'exercicios' %}class='active'{% endif %}>
+                            <a href="{% url "academia:exercicios" %}">
+                                <div class="icon"><ion-icon name="man-outline"></ion-icon></div>
+                                <div class="text">Músculo</div>
+                            </a>
+                        </li>
+                        <li style='--bg:#ffa117;' {% if page == 'aparelhos' %}class='active'{% endif %}>
+                            <a href="{% url "academia:aparelhos" %}">
+                                <div class="icon"><ion-icon name="barbell-outline"></ion-icon></div>
+                                <div class="text">Aparelho</div>
+                            </a>
+                        </li>
+                        <li style='--bg:#ff1783;' {% if page == 'treinos' %}class='active'{% endif %}>
+                            <a href="{% url "academia:treinos" %}">
+                                <div class="icon"><ion-icon name="accessibility-outline"></ion-icon></div>
+                                <div class="text">Treinos</div>
+                            </a>
+                        </li>
+                        <li style='--bg:#0fc70f;' {%  if page == 'aviso' %}class='active'{% endif %}>
+                            <a href="{% url "academia:aviso" request.user.id %}">
+                                <div class="icon"><ion-icon name="chatbubble-outline"></ion-icon></div>
+                                <div class="text">Avisos</div>
+                            </a>
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="bottom">
+                    <li style='--bg:#333;'>
+                        <a href="{% url "profile" request.user.id %}">
+                            <div class="icon">
+                                <div class="imgBx">
+                                    {% if user.is_authenticated %}
+                                        <img src="{{ user.profile.profile_img.url }}" alt="">
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="text">{{ user.username }}</div>
+                        </a>
+                    </li>  
+                    <li style='--bg:#333;'>
+                        <a href="{% url "logout" %}">
+                            <div class="icon"><ion-icon name="log-out-outline"></ion-icon></div>
+                            <div class="text">Logout</div>
+                        </a>
+                    </li>  
+                    {% else %}
+                        <li style='--bg:#333;'>
+                            <a href="{% url "login" %}">
+                                <div class="icon"><ion-icon name="log-in-outline"></ion-icon></div>
+                                <div class="text">Login</div>
+                            </a>
+                        </li> 
+                    {% endif %}    
+                </div>
+            </ul>
+        </div>
+    </div>
+
+
+    {% if messages %}
+    {% for message in messages %}
+        <div class="messages">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% endif %}
+    
+    <script src="{% static "academia/sidebar.js" %}"></script>
+
+
+{% endblock %}
+
+
+{% if page == 'login' %}
+    {% block login %}
+
+    {% endblock %}
+{% else %}
+    <div class="main-content">
+        <div class="container ">
+            {% block body %}
+
+            {% endblock %}
+        </div>  
+    </div>
+{% endif %}
+
+    {% comment %} Inport Js {% endcomment %}
+    <script src="{% static "academia/jquery-3.7.1.min.js" %}"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+{% block scripts %}
+
+{% endblock %}
+</body>
+
+</html>
+

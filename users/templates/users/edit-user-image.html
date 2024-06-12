@@ -1,0 +1,31 @@
+{% extends "academia/base.html" %}
+{% load static %}
+
+{% block body %}
+
+<div style='--bg:#2196f3;' class='register__h1'><h1>Foto do perfil</h1> </div>
+<br>
+
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class='inputContainer'>
+        <div class="containerUp">
+            <input type="file" name="profile_img" id="file" accept="image/*" hidden>
+            <div class="img-area" data-img="">
+                <img src="{{ user.profile.profile_img.url }}" alt="Aparelho Image" >
+                <ion-icon name="cloud-upload-outline" class="iconUp"></ion-icon>
+                <h3>Upload Image</h3>
+            </div>
+            <label style='--bg:#2196f3;' class="select-image" for='file'>Selecionar Imagem</label>
+        </div>
+    </div>  
+    <div class="register__btnContainer">
+        <button style='--bg:#2196f3;' type="submit" class='btn__register'>Salvar</button>
+    </div>
+</form>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static "academia/image.js" %}"></script>
+{% endblock %}

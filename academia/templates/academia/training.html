@@ -1,0 +1,60 @@
+{% extends "academia/base.html" %}
+
+{% block body %}
+
+{% if profile %}
+
+    <div style='--bg:#2196f3;' class='register__h1'><h1>Treino de {{ trainings.first.type }}</h1> </div>
+        {% if not trainings %}
+            <h4 class='register__h1'>Sem treinos ainda</h4>
+        {% endif %}
+        {% if is_admin %}
+        <br>
+        <div class="btn_perfil">
+            <a style='--bg:#2196f3;' class='btn__register' href="{% url 'academia:training_planning' profile.user_id %}">Add Treino</a> 
+        </div>  
+        {% endif %}
+            
+    <div class="cadContainer">
+        <div class="card__container">
+            {% for training in trainings %}
+                <article class="card__article">
+                    <img src="{{ training.aparelho.aparelho_image.url }}" alt="{{ training.aparelho.aparelho_name }}" class="card__img">
+                    
+                    <div class="card__data">
+                        {% if training.treino.treino_image.url %}
+                        <img src="{{ training.treino.treino_image.url }}" alt="{{ training.treino.treino_name }}" class="card__img">
+                        <h2 class="card__title">{{ forloop.counter }}º {{ training.treino.treino_name|capfirst }}</h2>
+                        {% else %}
+                        <h2 class="card__title">{{ forloop.counter }}º {{ training.aparelho.aparelho_name|capfirst }}</h2>
+                        {% endif %}
+                        {% if training.qnt_series %}
+                            <span class="card__description">Series: {{ training.qnt_series }}</span>
+                        {% endif %}
+
+                        {% if training.qnt_repetitions %}
+                            <span class="card__description">Repetição: {{ training.qnt_repetitions }}</span>
+                        {% endif %}
+
+                        {% if training.tempo %}
+                            <span class="card__description">Duração: {{ training.tempo }}</span>
+                        {% endif %}
+                        {% if is_admin %}
+                        <a href="{% url "academia:edit_training" profile.user.id training.id %}" class="card__button__tr">Editar</a>
+                        <a href="{% url "academia:delete_training" training.id %}" class="card__button__tr">Deletar</a>
+                        {% endif %}
+                    </div>
+
+                </article>
+                
+            {% endfor %}
+        </div>
+    </div>
+
+
+{% endif %}
+
+
+{% endblock %}
+
+                        {% comment %} <h2 class="card__title"> {{ forloop.counter }}º {{ training.aparelho.aparelho_name|capfirst }}</h2> {% endcomment %}

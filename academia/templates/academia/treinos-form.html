@@ -1,0 +1,52 @@
+{% extends "academia/base.html" %}
+{% load static %}
+
+
+{% block body %}
+<div style='--bg:#ff1783;' class='register__h1'><h1>Lista de Treinos</h1> </div>
+
+<form action="" method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+    <div class='inputContainer'>
+        <div class="inputContainer">
+            <input required="required" class="inputField" placeholder="Treino" type="text" name='treino_name'>
+            <label class="usernameLabel">Treino</label>
+            <div style='--bg:#ff1783;' class="userIcon"><ion-icon name="accessibility-outline"></ion-icon></div>
+        </div>
+        <div class="containerUp">
+            <input type="file" name="treino_image" id="file" accept="image/*" hidden>
+            <input type="hidden" id="selected-image" name="selected-image">
+            <div class="img-area" data-img="">
+                <ion-icon name="cloud-upload-outline" class="iconUp"></ion-icon>
+                <h3>Upload Image</h3>
+            </div>
+            <label style='--bg:#ff1783;' class="select-image" for='file'>Selecionar Imagem</label>
+        </div>
+    </div>  
+    
+    <div class="register__btnContainer">
+        <button style='--bg:#ff1783;' type="submit" class='btn__register'>Add</button>
+    </div>
+</form>    
+
+<div class="cadContainer">
+    <div class="card__container">
+        {% for treino in treinos %}
+            <article class="card__article">
+                <img src="{{ treino.treino_image.url }}" alt="image" class="card__img">
+
+                <div class="card__data">
+                    <span class="card__description"></span>
+                    <h2 class="card__title">{{ treino.treino_name|capfirst }}</h2>
+                    <a href="{% url "academia:delete_treino" treino.id %}" class="card__button__ca">Deletar</a>
+                </div>
+            </article>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static "academia/image.js" %}"></script>
+{% endblock %}

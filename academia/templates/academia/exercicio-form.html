@@ -1,0 +1,51 @@
+{% extends "academia/base.html" %}
+{% load static %}
+
+{% block body %}
+<div style='--bg:#b145e9;' class='register__h1'><h1>Lista de Músculos</h1> </div>
+<form action="" method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+    <div class='inputContainer'>
+        <div class="inputContainer">
+            <input required="required" class="inputField" placeholder="Músculo" type="text" name='exercicio_type'>
+            <label class="usernameLabel">Músculo</label>
+            <div style='--bg:#b145e9;' class="userIcon"><ion-icon name="man-outline"></ion-icon></div>
+        </div>
+        <div class="containerUp">
+            <input type="file" name="exercicio_image" id="file" accept="image/*" hidden>
+            <input type="hidden" id="selected-image" name="selected-image">
+            <div class="img-area" data-img="">
+                <ion-icon name="cloud-upload-outline" class="iconUp"></ion-icon>
+                <h3>Upload Image</h3>
+            </div>
+            <label style='--bg:#b145e9;' class="select-image" for='file'>Selecionar Imagem</label>
+        </div>
+    </div>  
+    <div class="register__btnContainer">
+        <button style='--bg:#b145e9;' type="submit" class='btn__register'>Add</button>
+    </div>
+</form>
+
+
+
+<div class="cadContainer">
+    <div class="card__container">
+        {% for exercicio in exercicios %}
+            <article class="card__article">
+                <img src="{{ exercicio.exercicio_image.url }}" alt="image" class="card__img">
+
+                <div class="card__data">
+                    <span class="card__description"></span>
+                    <h2 class="card__title">{{ exercicio.exercicio_type|capfirst }}</h2>
+                    <a href="{% url "academia:delete_exercicio" exercicio.id %}" class="card__button__ex">Deletar</a>
+                </div>
+            </article>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static "academia/image.js" %}"></script>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "academia/base.html" %}
+{% load static %}
+
+{% block body %}
+<div style='--bg:#f44336;' class='register__h1'><h1>Quadro de Avisos</h1> </div>
+<div>
+    {% for room in rooms  %}
+        <div class='avisoContainer'>
+            <div class="userAviso">
+                <div class="avisoImageUser">
+                    <img src="{{ room.host.profile.profile_img.url }}" alt="">
+                </div>
+                <div class="avisoHost">
+                    <label>{{ room.host.first_name|capfirst }}</label>
+                </div>
+                <div class='avisoDate'>
+                     <span>{{ room.update.date }}</span>
+                </div>
+            </div>
+
+            <div class='avisoTitle'>
+                <h1>{{ room.title|capfirst }}</h1>
+            </div>
+            <div class='avisoMessage'>
+                <h4>{{ room.message }}  
+            </div>
+
+            <div class='avisoEdit'>
+                {% if room.host.id == request.user.id %}
+                <a href="{% url "academia:delete_aviso" room.id %}" class="card__button__ap">Deletar</a>  
+                <a href="{% url "academia:edit_aviso" room.id %}" class="card__button__ap">Editar</a>  
+                {% endif %}
+            </div>
+        </div>
+
+
+
+    {% endfor %}
+</div>
+{% endblock %}

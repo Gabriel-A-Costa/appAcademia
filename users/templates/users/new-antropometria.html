@@ -1,0 +1,198 @@
+{% extends "academia/base.html" %}
+
+{% block body %}
+
+<div style='--bg:#2196f3;' class='register__h1'><h1>Nova Antropometria</h1></div>
+
+<br>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="formAntropometria">
+        <div class='inputContainer'>
+            <h3>Perimetria e Biometria</h3>
+            <div class="inputContainer">
+                <select class="inputField" name='avaliado'>
+                    {% for avaliado_id, avaliado in avaliados %}
+                        <option value="{{ avaliado_id }}">{{ avaliado }}</option>
+                    {% endfor %}    
+                </select>
+                <label class="usernameLabel">Avaliado</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="chevron-forward-outline"></ion-icon></div>
+            </div>
+
+            <!-- Massa Corporal -->
+            <div class="inputContainer">
+                <input required class="inputField" placeholder="Massa Corporal" type="text" name="massa_corporal">
+                <label class="usernameLabel">Massa Corporal</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+            
+            <!-- Estatura -->
+            <div class="inputContainer">
+                <input required class="inputField" placeholder="Estatura" type="text" name="estatura">
+                <label class="usernameLabel">Estatura</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+
+            <!-- Pescoco -->
+            <div class="inputContainer">
+                <input required class="inputField" placeholder="Pescoço" type="text" name="pescoco">
+                <label class="usernameLabel">Pescoço</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+
+            <!-- Ombro -->
+            <div class="inputContainer">
+                <input required class="inputField" placeholder="Ombro" type="text" name="ombro">
+                <label class="usernameLabel">Ombro</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+
+            <!-- Torax -->
+            <div class="inputContainer">
+                <input required class="inputField" placeholder="Torax" type="text" name="torax">
+                <label class="usernameLabel">Torax</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+
+            <!-- Cintura -->
+            <div class="inputContainer">
+                <input required class="inputField" placeholder="Cintura" type="text" name="cintura">
+                <label class="usernameLabel">Cintura</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+
+            <!-- Abdome -->
+            <div class="inputContainer">
+                <input required class="inputField" placeholder="Abdome" type="text" name="abdome">
+                <label class="usernameLabel">Abdome</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+
+            <!-- Quadril -->
+            <div class="inputContainer">
+                <input required class="inputField" placeholder="Quadril" type="text" name="quadril">
+                <label class="usernameLabel">Quadril</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+
+        </div>
+
+        <div class='inputContainer'>
+            <h3>Massa e Gordura</h3>
+
+            <!-- IMC -->
+            <div class="inputContainer">
+                <input required class="inputField" placeholder="IMC" type="text" name="imc">
+                <label class="usernameLabel">IMC</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+
+            <!-- Gordura -->
+            <div class="inputContainer">
+                <input required class="inputField" placeholder="Indice de Gordura" type="text" name="gordura">
+                <label class="usernameLabel">Indice de Gordura</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+
+            <!-- Massa Corporal 2 -->
+            <div class="inputContainer">
+                <input required class="inputField" placeholder="Massa Corporal" type="text" name="massa_corporal_2">
+                <label class="usernameLabel">Massa Corporal</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+
+            <!-- Metabolismo -->
+            <div class="inputContainer">
+                <input required class="inputField" placeholder="Metabolismo" type="text" name="metabolismo">
+                <label class="usernameLabel">Metabolismo</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+
+            <!-- Idade Corporal -->
+            <div class="inputContainer">
+                <input required class="inputField" placeholder="Idade Corporal" type="text" name="idade_corporal">
+                <label class="usernameLabel">Idade Corporal</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+
+            <!-- Gordura Viceral -->
+            <div class="inputContainer">
+                <input required class="inputField" placeholder="Gordura Viceral" type="text" name="gordura_viceral">
+                <label class="usernameLabel">Gordura Viceral</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+        </div>
+
+        <div class='inputContainer'>
+            <h3>Perimetria Esquerda</h3>
+
+            <!-- Braco Esquerda -->
+            <div class="inputContainer">
+                <input required class="inputField" placeholder="Braço" type="text" name="braco_esquerda">
+                <label class="usernameLabel">Braço</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+
+            <!-- Ante Braco Esquerda -->
+            <div class="inputContainer">
+                <input required class="inputField" placeholder="Ante Braço" type="text" name="ante_braco_esquerda">
+                <label class="usernameLabel">Ante Braço</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+
+            <!-- Coxa Esquerda -->
+            <div class="inputContainer">
+                <input required class="inputField" placeholder="Coxa" type="text" name="coxa_esquerda">
+                <label class="usernameLabel">Coxa</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+
+            <!-- Panturrilha Esquerda -->
+            <div class="inputContainer">
+                <input required class="inputField" placeholder="Panturrilha" type="text" name="panturrilha_esquerda">
+                <label class="usernameLabel">Panturrilha</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+        </div>
+
+        <div class='inputContainer'>
+            <h3>Perimetria Direita</h3>
+
+            <!-- Braco Direito -->
+            <div class="inputContainer">
+                <input required class="inputField" placeholder="Braço" type="text" name="braco_direito">
+                <label class="usernameLabel">Braço</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+
+            <!-- Ante Braco Direito -->
+            <div class="inputContainer">
+                <input required class="inputField" placeholder="Ante Braço" type="text" name="ante_braco_direito">
+                <label class="usernameLabel">Ante Braço</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+
+            <!-- Coxa Direito -->
+            <div class="inputContainer">
+                <input required class="inputField" placeholder="Coxa" type="text" name="coxa_direito">
+                <label class="usernameLabel">Coxa</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+
+            <!-- Panturrilha Direito -->
+            <div class="inputContainer">
+                <input required class="inputField" placeholder="Panturrilha" type="text" name="panturrilha_direito">
+                <label class="usernameLabel">Panturrilha</label>
+                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="create-outline"></ion-icon></div>
+            </div>
+        </div>
+
+
+        <div class="register__btnContainer">
+            <button style='--bg:#2196f3;' type="submit" class='btn__register'>Salvar</button>
+        </div>    </div>
+</form>
+
+{% endblock %}
