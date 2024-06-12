@@ -8,7 +8,9 @@
         <div class='avisoContainer'>
             <div class="userAviso">
                 <div class="avisoImageUser">
-                    <img src="{{ room.host.profile.profile_img.url }}" alt="">
+                    <div class='imgBx'>
+                        <img src="{{ room.host.profile.profile_img.url }}" alt="">
+                    </div>
                 </div>
                 <div class="avisoHost">
                     <label>{{ room.host.first_name|capfirst }}</label>
