@@ -856,7 +856,7 @@ img {
   width: 95%;
   /* border: 2px solid white; */
   border-radius: 15px;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 .slide__wrapper {
@@ -1463,6 +1463,10 @@ img {
   }
 }
 
+.training__container {
+  max-width: auto;
+}
+
 @media (min-width: 500px) {
   .container {
     position: relative;
@@ -1472,6 +1476,10 @@ img {
 @media (max-width: 490px) {
   .row {
     justify-content: center;
+  }
+
+  .training__container {
+    max-width: 400px;
   }
 }
 
