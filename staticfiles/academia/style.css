@@ -249,7 +249,7 @@ img {
 }
 
 .menuToggle {
-  position: absolute;
+  position: fixed;
   top: 30px;
   right: 20px;
   width: 50px;
