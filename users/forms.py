@@ -46,7 +46,7 @@ class TrainingPlanning(forms.ModelForm):
     
     class Meta:
         model =  Training
-        fields = ['type', 'aparelho', 'qnt_series', 'qnt_repetitions', 'tempo', 'treino']
+        fields = ['type', 'aparelho', 'qnt_series', 'qnt_repetitions', 'tempo', 'treino', 'tipo_treino']
         
     def __init__(self, *args, user=None, **kwargs):
         super().__init__(*args, **kwargs)

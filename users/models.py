@@ -11,6 +11,7 @@ class Training(models.Model):
     type = models.ForeignKey(Exercicio, on_delete=models.CASCADE)
     aparelho = models.ForeignKey(Aparelho, on_delete=models.CASCADE)
     treino = models.ForeignKey(Treinos, on_delete=models.CASCADE, null=True, blank=True)
+    tipo_treino = models.CharField(max_length=200, null=True, blank=True)
     tempo = models.CharField(max_length=200, null=True, blank=True)
     qnt_series = models.IntegerField(null=True, blank=True)
     qnt_repetitions = models.IntegerField(null=True, blank=True)
@@ -30,6 +31,7 @@ class Anamnese(models.Model):
     ]
 
     COLUNA = [
+        ('Normal', 'Normal'),
         ('Hiper-lordose cervical', 'Hiper-lordose cervical'),
         ('Hiper-cifose', 'Hiper-cifose'),
         ('Hiper-lordose lombar', 'Hiper-lordose lombar'),
