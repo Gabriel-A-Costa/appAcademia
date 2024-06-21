@@ -14,7 +14,7 @@ class Training(models.Model):
     tipo_treino = models.CharField(max_length=200, null=True, blank=True)
     tempo = models.CharField(max_length=200, null=True, blank=True)
     qnt_series = models.IntegerField(null=True, blank=True)
-    qnt_repetitions = models.IntegerField(null=True, blank=True)
+    qnt_repetitions = models.CharField(max_length=200, null=True, blank=True)
     date_creation = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
