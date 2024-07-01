@@ -145,7 +145,7 @@
 
                 <div class="anamnese-item">
                     <h3>Pressão arterial: <span>{{ anamnese.controle_pressao }}</span></h3>
-                    {% if anamnese.controle_pressao != 'Normal' %}
+                    {% if anamnese.controle_pressao == 'Alta' %}
                         <p>Pressão: {{ anamnese.pressao }}</p>
                     {% endif %}
                 </div>

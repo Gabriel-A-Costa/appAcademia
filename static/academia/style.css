@@ -85,39 +85,6 @@ img {
   margin-left: auto;
 }
 
-/* ------------------Select--------------------------- */
-
-.select2-container--default
-  .select2-selection--single
-  .select2-selection__clear {
-  display: none;
-}
-
-.select2-container--default .select2-selection--single {
-  background-color: #f0f0f0; /* Cor de fundo personalizada */
-  border: 1px solid #ccc; /* Borda personalizada */
-  border-radius: 15px; /* Borda arredondada */
-  height: 50px; /* Altura personalizada */
-  padding: 5px; /* Espaçamento interno */
-}
-
-.select2-container--default .select2-results__option {
-  color: black;
-}
-
-.select2-container--default
-  .select2-selection--single
-  .select2-selection__rendered {
-  color: #000000; /* Cor do texto personalizada */
-  line-height: 40px; /* Alinhamento vertical do texto */
-}
-
-.select2-container--default
-  .select2-selection--single
-  .select2-selection__arrow {
-  height: 50px; /* Altura da seta */
-}
-
 /* ------------------NavBar--------------------------- */
 .sidebar {
   position: fixed;

@@ -1,6 +1,4 @@
 {% extends "academia/base.html" %}
-{% load static %}
-
 {% block body %}
 
 <div style='--bg:#2196f3;' class='register__h1'><h1>Editar Treino</h1> </div>
@@ -40,11 +38,6 @@
             </div>
 
             <div class="inputContainer">
-                <input class="inputField" placeholder="Treino" type="text" name='tipo_treino' {% if form.tipo_treino.value %} value='{{ form.tipo_treino.value }}' {% endif %}>
-                <label class="usernameLabel">Tipo do Treino</label>
-                <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="list-outline"></ion-icon></div>
-            </div>
-            <div class="inputContainer">
                 <input class="inputField" placeholder="Quantidade De Series" type="text" name='qnt_series' {% if form.qnt_series.value %} value='{{ form.qnt_series.value }}' {% endif %}>
                 <label class="usernameLabel" for="inputField">Series</label>
                 <div style='--bg:#2196f3;' class="userIcon"><ion-icon name="menu-outline"></ion-icon></div>
@@ -66,8 +59,4 @@
         </div>
     </form>
 
-{% endblock %}
-
-{% block scripts %}
-    <script src="{% static "academia/select.js" %}"></script>
 {% endblock %}
