@@ -28,6 +28,10 @@
                         {% else %}
                         <h2 class="card__title">{{ forloop.counter }}º {{ training.aparelho.aparelho_name|capfirst }}</h2>
                         {% endif %}
+                        {% if training.tipo_treino %}
+                            <span class="card__description">Treino: {{ training.tipo_treino }}</span>
+                        {% endif %}
+
                         {% if training.qnt_series %}
                             <span class="card__description">Series: {{ training.qnt_series }}</span>
                         {% endif %}
