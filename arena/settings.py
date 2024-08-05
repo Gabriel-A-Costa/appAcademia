@@ -33,12 +33,12 @@ SECRET_KEY = env('SECRET_KEY')
 if ENVIRONMENT == 'development':
     DEBUG = True
 else:
-    DEBUG = False
+    DEBUG = True
 
 
-ALLOWED_HOSTS = ['https://academiaapp.up.railway.app', '127.0.0.1']
+ALLOWED_HOSTS = ['academiaapp.up.railway.app', '127.0.0.1']
 
-CSRF_TRUSTED_ORIGINS = ['https://https://academiaapp.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://academiaapp.up.railway.app']
 
 
 # Application definition
