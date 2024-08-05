@@ -36,9 +36,9 @@ else:
     DEBUG = True
 
 
-ALLOWED_HOSTS = ['appacademia-production.up.railway.app', '127.0.0.1']
+ALLOWED_HOSTS = ['academiaapp.up.railway.app', '127.0.0.1']
 
-CSRF_TRUSTED_ORIGINS = ['https://appacademia-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://academiaapp.up.railway.app']
 
 
 # Application definition
