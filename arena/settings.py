@@ -33,7 +33,7 @@ SECRET_KEY = env('SECRET_KEY')
 if ENVIRONMENT == 'development':
     DEBUG = True
 else:
-    DEBUG = True
+    DEBUG = False
 
 
 ALLOWED_HOSTS = ['academiaapp.up.railway.app', '127.0.0.1']
